@@ -14,7 +14,7 @@ models = [
         abbr='dashscope-qwen3.5-35b',
         type=DashScopeAPI,
         # The model name sent in the request body
-        path='pre-qwen3.5-35b-a3b-1tp-fp4',
+        path='pre-qwen3.5-35b-a3b-fp4-test',
         # Full DashScope multimodal-generation endpoint
         url='https://poc-dashscope.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation',
         # Replace with your actual Bearer token, or use env var via os.environ
