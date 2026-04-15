@@ -19,6 +19,11 @@ with read_base():
     # 模型配置：DashScope Qwen3.5-35B
     from opencompass.configs.models.qwen3.dashscope_qwen3_5_35b import models
 
+# 每个子数据集只取前 50 条样本，快速验证
+for dataset in mmlu_pro_datasets + mmlu_cf_datasets + supergpqa_datasets:
+    dataset['reader_cfg'] = dataset.get('reader_cfg', {})
+    dataset['reader_cfg']['test_range'] = '[0:50]'
+
 # 合并所有数据集（C-Eval 待下载数据后取消注释并加入）
 datasets = (
     mmlu_pro_datasets

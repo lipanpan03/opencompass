@@ -218,26 +218,26 @@ class DashScopeAPI(BaseAPIModel):
                     self.url,
                     headers=headers,
                     data=json.dumps(request_body),
-                    timeout=120,
+                    timeout=300,
                 )
             except requests.ConnectionError as connection_error:
                 self.logger.error(f'Connection error: {connection_error}')
                 self.release()
-                time.sleep(2)
+                time.sleep(10)
                 num_retries += 1
                 continue
             except requests.Timeout:
                 self.logger.error('Request timed out, retrying...')
                 self.release()
-                time.sleep(2)
+                time.sleep(10)
                 num_retries += 1
                 continue
 
             self.release()
 
             if raw_response.status_code == 429:
-                self.logger.warning('Rate limit exceeded, waiting 5s...')
-                time.sleep(5)
+                self.logger.warning('Rate limit exceeded, waiting 30s...')
+                time.sleep(30)
                 num_retries += 1
                 continue
 
